@@ -282,8 +282,11 @@ class Interpolator:
         # Convert angles to radians for integration
         angles_rad = np.radians(angles_filtered)
         
-        # Trapezoidal integration
-        area = np.trapezoid(gz_filtered, angles_rad)
+        # Trapezoidal integration (trapezoid for NumPy 2.0+, trapz for older versions)
+        if hasattr(np, 'trapezoid'):
+            area = np.trapezoid(gz_filtered, angles_rad)
+        else:
+            area = np.trapz(gz_filtered, angles_rad)
         
         return area
 
