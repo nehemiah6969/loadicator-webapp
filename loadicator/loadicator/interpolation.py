@@ -283,7 +283,7 @@ class Interpolator:
         angles_rad = np.radians(angles_filtered)
         
         # Trapezoidal integration
-        area = np.trapz(gz_filtered, angles_rad)
+        area = np.trapezoid(gz_filtered, angles_rad)
         
         return area
 
